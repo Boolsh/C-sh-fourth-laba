@@ -66,9 +66,7 @@ namespace шарпы_4_лаба
             for (int i = 1; i < size-1; ++i)
             {
                 if (mat[number, i] > mat[number, i+1] && mat[number, i] > mat[number, i - 1])
-                {
-                    result[curr_ind++] = i++;
-                }
+                    result[curr_ind++] = 1 + i++;
             }
             return result;
         }
@@ -86,8 +84,11 @@ namespace шарпы_4_лаба
 
             for (int i = 0; i < size; ++i)
             {
+                Console.Write($"{i+1}) ");
                 special_print_row(size, task(i, size, ref mat));
             }
+
+            Console.WriteLine();
 
 
         }
