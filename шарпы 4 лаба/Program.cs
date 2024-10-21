@@ -27,20 +27,15 @@ namespace шарпы_4_лаба
             Console.WriteLine();
 
         }
-        static void special_print_row(int size, int[] arr)
+        static void special_print_row(int size, int[] arr, int size_arr)
         {
             if (arr[0] == 0 && arr[1] == 0)
                 Console.WriteLine("Нет локальных максимумов");
             else
-            {                
-                for (int i = 0;i < size; i++)
-                {
-                    if (i > 0 && arr[i] == 0)
-                        break;
-                    else Console.Write(arr[i] + " ");
-
-                }
-                    Console.WriteLine();
+            {
+                for (int i = 0; i < size_arr; i++)
+                    Console.Write(arr[i] + " ");
+                Console.WriteLine();
             }
         }
 
@@ -57,7 +52,7 @@ namespace шарпы_4_лаба
             fill_matrix(n, arr);
             return arr;
         }
-        static int[] task(int number, int size,ref int[,] mat)
+        static int[] task(int number, int size,ref int[,] mat, out int size_arr)
         {
             int[] result = new int[size];
 
@@ -68,12 +63,13 @@ namespace шарпы_4_лаба
                 if (mat[number, i] > mat[number, i+1] && mat[number, i] > mat[number, i - 1])
                     result[curr_ind++] = 1 + i++;
             }
+            size_arr = curr_ind;
             return result;
         }
         
         static void Main(string[] args)
         {
-            int size;
+            int size, size_arr;
             int [,] mat = create_matrix(out size);
 
 
@@ -85,7 +81,7 @@ namespace шарпы_4_лаба
             for (int i = 0; i < size; ++i)
             {
                 Console.Write($"{i+1}) ");
-                special_print_row(size, task(i, size, ref mat));
+                special_print_row(size, task(i, size, ref mat, out size_arr), size_arr);
             }
 
             Console.WriteLine();
